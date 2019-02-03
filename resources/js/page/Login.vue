@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form class="form" @submit.prevent="login">
     <label for="login-email">Email</label>
     <input type="text" id="login-email" class="form__item" v-model="loginForm.email">
     <label for="login-password">Password</label>
@@ -19,6 +19,13 @@ export default {
         password: ""
       }
     };
+  },
+  methods: {
+    async login() {
+      await this.$store.dispatch("auth/login", this.loginForm);
+
+      this.$router.push("/");
+    }
   }
 };
 </script>
