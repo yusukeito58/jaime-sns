@@ -13,7 +13,6 @@ const mutations = {
 const actions = {
   async register(context, data) {
     const response = await axios.post('/api/register', data);
-    console.dir(response);
     context.commit('setUser', response.data);
   }
 };
