@@ -8,3 +8,8 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 // User Logout
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+// logged user
+Route::get('user', function() {
+    return Auth::user();
+})->name('user');
