@@ -1,13 +1,24 @@
 <template>
-  <form class="form" @submit.prevent="login">
-    <label for="login-email">Email</label>
-    <input type="text" id="login-email" class="form__item" v-model="loginForm.email">
-    <label for="login-password">Password</label>
-    <input type="password" id="login-password" class="form__item" v-model="loginForm.password">
-    <div class="form__button">
-      <button type="submit" class="button button-inverse">login</button>
-    </div>
-  </form>
+  <section class="container">
+    <el-card style="flex: 1">
+      <div slot="header" class="clearfix">
+        <span>Login Form</span>
+      </div>
+      <form>
+        <div class="form-content">
+          <span>Email</span>
+          <el-input v-model="loginForm.email"/>
+        </div>
+        <div class="form-content">
+          <span>Password</span>
+          <el-input type="password" v-model="loginForm.password"/>
+        </div>
+        <div class="text-right">
+          <el-button type="primary" @click="login">Login</el-button>
+        </div>
+      </form>
+    </el-card>
+  </section>
 </template>
 
 <script>
