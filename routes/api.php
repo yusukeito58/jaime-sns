@@ -13,3 +13,6 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('user', function() {
     return Auth::user();
 })->name('user');
+
+// Post Create
+Route::post('/posts', 'PostController@create')->name('post.create');
