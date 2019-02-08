@@ -1,19 +1,19 @@
 <template>
-  <nav class="navbar">
-    <RouterLink class="navbar__brand" to="/"></RouterLink>
-    <div class="navbar__menu">
-      <div v-if="isLogin" class="navbar__item">
-        <button class="button">
-          <i class="icon ion-md-add"></i>
-          Post a coeur
-        </button>
-      </div>
-      <span v-if="isLogin" class="navbar__item">{{ username }}</span>
-      <div v-else class="navbar__item">
-        <RouterLink class="button button--link" to="/login">Login / Register</RouterLink>
-      </div>
-    </div>
-  </nav>
+  <el-menu mode="horizontal">
+    <el-menu-item index="1" style="pointer-events:none;">Laravel-SNS</el-menu-item>
+
+    <el-menu-item v-if="isLogin" index="4" style="float: right;" @click="logout">Logout</el-menu-item>
+    <el-menu-item
+      v-else
+      index="4"
+      style="float: right;"
+      :router="{ path: '/login'}"
+    >Login / Register</el-menu-item>
+    <el-menu-item v-if="isLogin" index="5" style="float: right;">Post a coeur</el-menu-item>
+    <el-menu-item v-if="isLogin" index="6" style="float: right; pointer-events:none;">
+      <span>{{ username }}</span>
+    </el-menu-item>
+  </el-menu>
 </template>
 
 <script>
@@ -24,6 +24,13 @@ export default {
     },
     username() {
       return this.$store.getters["auth/username"];
+    }
+  },
+  methods: {
+    async logout() {
+      await this.$store.dispatch("auth/logout");
+
+      this.$router.push("/logout");
     }
   }
 };
