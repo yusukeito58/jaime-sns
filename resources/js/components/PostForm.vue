@@ -29,6 +29,12 @@ export default {
 
       this.content = "";
       this.$emit("input", false);
+
+      this.$store.commit("message/setContent", {
+        content: "Successful message posting！",
+        type: "success",
+        timeout: 6000
+      });
     }
   }
 };
