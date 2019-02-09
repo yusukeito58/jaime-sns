@@ -9,8 +9,7 @@
       style="float: right;"
       :router="{ path: '/login'}"
     >Login / Register</el-menu-item>
-    <el-menu-item v-if="isLogin" index="5" style="float: right;">Post a coeur</el-menu-item>
-    <el-menu-item v-if="isLogin" index="6" style="float: right; pointer-events:none;">
+    <el-menu-item v-if="isLogin" index="5" style="float: right; pointer-events:none;">
       <span>{{ username }}</span>
     </el-menu-item>
   </el-menu>
