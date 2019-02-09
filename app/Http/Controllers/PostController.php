@@ -31,4 +31,15 @@ class PostController extends Controller
 
         return response($post, 201);
     }
+
+    /**
+     * Post List
+     */
+    public function index()
+    {
+        $posts = Post::with(['owner'])
+            ->orderBy(Post::CREATED_AT, 'desc')->paginate();
+
+        return $posts;
+    }
 }

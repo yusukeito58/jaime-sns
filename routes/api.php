@@ -16,3 +16,6 @@ Route::get('user', function() {
 
 // Post Create
 Route::post('/posts', 'PostController@create')->name('post.create');
+
+// Post List
+Route::get('posts', 'PostController@index')->name('post.index');

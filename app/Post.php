@@ -12,6 +12,10 @@ class Post extends Model
     /** ID length */
     const ID_LENGTH = 12;
 
+    protected $hidden = [
+        self::UPDATED_AT,
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -42,5 +46,10 @@ class Post extends Model
         }
 
         return $id;
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id', 'users');
     }
 }
