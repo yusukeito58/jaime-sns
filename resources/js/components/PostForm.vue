@@ -1,9 +1,8 @@
 <template>
   <el-card v-show="value">
-    <h2>Submit a post</h2>
     <form>
-      <input v-model="content">
-      <el-button type="primary" @click="submit" round>Primary</el-button>
+      <el-input type="textarea" :rows="3" placeholder="Please input" v-model="content"></el-input>
+      <el-button type="primary" @click="submit" round style="float: right;">Primary</el-button>
     </form>
   </el-card>
 </template>
@@ -29,6 +28,7 @@ export default {
       const response = await axios.post("/api/posts", formData);
 
       this.content = "";
+      this.$emit("input", false);
     }
   }
 };

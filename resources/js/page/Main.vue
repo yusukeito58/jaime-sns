@@ -4,7 +4,7 @@
       <Profile/>
     </el-col>
     <el-col :span="18">
-      <button v-if="!showForm" @click="showForm = !showForm">Submit a post</button>
+      <el-button v-if="!showForm" @click="showForm = !showForm">Submit a post</el-button>
       <PostForm v-model="showForm"/>
       <PostList/>
     </el-col>
