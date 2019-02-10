@@ -1,12 +1,36 @@
 <template>
-  <el-card>
-    <el-table style="width: 100%" class="table">
-      <el-table-column label="title"/>
-      <el-table-column label="post date"/>
-    </el-table>
-  </el-card>
+  <div>
+    <Post v-for="post in posts" :item="post" :key="post.id"/>
+  </div>
 </template>
 
 <script>
-export default {};
+import Post from "./Post.vue";
+
+export default {
+  components: {
+    Post
+  },
+  data() {
+    return {
+      posts: []
+    };
+  },
+  created() {
+    // initial
+    this.fetchPosts();
+
+    this.update();
+  },
+  methods: {
+    update() {
+      setInterval(this.fetchPosts, 10000);
+    },
+    async fetchPosts() {
+      const response = await axios.get("/api/posts");
+
+      this.posts = response.data.data;
+    }
+  }
+};
 </script>
