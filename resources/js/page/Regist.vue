@@ -30,7 +30,7 @@ export default {
     async register() {
       await this.$store.dispatch("auth/register", this.registerForm);
 
-      this.$router.push("/");
+      this.$router.push("/home");
     }
   }
 };

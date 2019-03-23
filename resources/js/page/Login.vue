@@ -35,7 +35,7 @@ export default {
     async login() {
       await this.$store.dispatch("auth/login", this.loginForm);
 
-      this.$router.push("/");
+      this.$router.push("/home");
     }
   }
 };
