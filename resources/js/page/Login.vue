@@ -13,7 +13,8 @@
           <span>Password</span>
           <el-input type="password" v-model="loginForm.password"/>
         </div>
-        <div class="text-right">
+        <div class="text-right submit">
+          <a href="/regist">Signup</a>
           <el-button type="primary" @click="login">Login</el-button>
         </div>
       </form>
@@ -40,3 +41,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.submit {
+  margin-top: 20px;
+  > a {
+    margin-right: 30px;
+  }
+}
+</style>
