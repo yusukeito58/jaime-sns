@@ -1,4 +1,5 @@
 # Laravel-SNS
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 * Laravel5.6
 * PHP7
@@ -22,7 +23,7 @@ Component adopts [Element UI](https://element.eleme.io/#/en-US).
   
 ## Licence
 
-[GNU](https://github.com/yusukeito58/laravel-sns/blob/master/LICENSE)
+[MIT](https://github.com/yusukeito58/laravel-sns/blob/master/LICENSE)
 
 ## Author
 
