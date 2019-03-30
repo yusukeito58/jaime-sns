@@ -1,42 +1,29 @@
-# Docker for Laravel development
+# Laravel-SNS
 
-## Make develop directory
+* Laravel5.6
+* PHP7
+* MySQL
+* Vue.js
 
-```
-$ mkdir laravel-app
-$ cd laravel-app/
-```
+## Overview
+It is a web application that imitates Twitter. Created by Laravel + Vue.js.
 
-## Get docker files
+## Demo
 
-```
-$ wget -O docker.zip https://github.com/yusukeito58/docker-for-laravel-development/archive/master.zip  \
-    && unzip docker.zip && mv docker-for-laravel-development-master/* ./ \
-    && rm -rf docker.zip docker-for-laravel-development-master
+[Demo](http://i-yusuke.com/)
 
-$ ls 
-docker                  docker-compose.yml
-```
+## Main function
 
-## Docker run
+## Style guide
 
-```
-$ docker-compose up -d --build
+Component adopts [Element UI](https://element.eleme.io/#/en-US).
 
-$ docker-compose ps
-      Name                     Command              State                 Ports
----------------------------------------------------------------------------------------------
-laravel-app_app_1   docker-php-entrypoint php-fpm   Up      9000/tcp
-laravel-app_db_1    docker-entrypoint.sh mysqld     Up      0.0.0.0:3306->3306/tcp, 33060/tcp
-laravel-app_web_1   nginx -g daemon off;            Up      0.0.0.0:80->80/tcp
-```
+※ Layout adjustment is done with scss
+  
+## Licence
 
-## Make Laravel project
+[GNU](https://github.com/yusukeito58/laravel-sns/blob/master/LICENSE)
 
-```
-$ docker-compose exec app laravel new
-```
+## Author
 
-## Access Laravel App
-
-http://localhost
+[yusukeito58](https://github.com/yusukeito58)
