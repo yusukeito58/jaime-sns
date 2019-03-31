@@ -1,3 +1,7 @@
+export const OK = 200;
+export const CREATED = 201;
+export const UNPROCESSABLE_ENTITY = 422;
+
 export function getCookieValue(searchKey) {
   if (typeof searchKey === 'undefined') {
     return '';

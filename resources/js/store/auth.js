@@ -1,7 +1,10 @@
 import { longStackSupport } from 'q';
+import { OK, UNPROCESSABLE_ENTITY } from '../util';
 
 const state = {
-  user: null
+  user: null,
+  apiStatus: null,
+  loginErrorMessages: null
 };
 
 const getters = {
@@ -12,6 +15,12 @@ const getters = {
 const mutations = {
   setUser(state, user) {
     state.user = user;
+  },
+  setApiStatus(state, apiStatus) {
+    state.apiStatus = apiStatus;
+  },
+  setLoginErrorMessages(state, messages) {
+    state.loginErrorMessages = messages;
   }
 };
 
@@ -21,8 +30,23 @@ const actions = {
     context.commit('setUser', response.data);
   },
   async login(context, data) {
-    const response = await axios.post('/api/login', data);
-    context.commit('setUser', response.data);
+    context.commit('setApiStatus', null);
+    const response = await axios
+      .post('/api/login', data)
+      .catch(err => err.response || err);
+
+    if (response.status === OK) {
+      context.commit('setApiStatus', true);
+      context.commit('setUser', response.data);
+      return false;
+    }
+
+    context.commit('setApiStatus', false);
+    if (response.status === UNPROCESSABLE_ENTITY) {
+      context.commit('setLoginErrorMessages', response.data.errors);
+    } else {
+      context.commit('error/setCode', response.status, { root: true });
+    }
   },
   async logout(context) {
     const response = await axios.post('/api/logout');
