@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Intro from './page/Intro.vue';
-import Home from './page/Home.vue';
-import Login from './page/Login.vue';
-import Regist from './page/Regist.vue';
+import Intro from './pages/Intro.vue';
+import Home from './pages/Home.vue';
+import Login from './pages/Login.vue';
+import Regist from './pages/Regist.vue';
 
 Vue.use(VueRouter);
 
