@@ -6,6 +6,8 @@ import Home from './pages/Home.vue';
 import Login from './pages/Login.vue';
 import Regist from './pages/Regist.vue';
 
+import System from './pages/errors/System.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -27,6 +29,10 @@ const routes = [
   {
     path: '/regist',
     component: Regist
+  },
+  {
+    path: '/500',
+    component: System
   }
 ];
 
