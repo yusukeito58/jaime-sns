@@ -5,6 +5,14 @@
         <span>Login Form</span>
       </div>
       <form>
+        <div v-if="loginErrors">
+          <ul v-if="loginErrors.email">
+            <li v-for="(msg, index) in loginErrors.email" :key="index">{{ msg }}</li>
+          </ul>
+          <ul v-if="loginErrors.password">
+            <li v-for="(msg, index) in loginErrors.password" :key="index">{{ msg }}</li>
+          </ul>
+        </div>
         <div class="form-content">
           <span>Email</span>
           <el-input v-model="loginForm.email"/>
@@ -13,7 +21,8 @@
           <span>Password</span>
           <el-input type="password" v-model="loginForm.password"/>
         </div>
-        <div class="text-right">
+        <div class="text-right submit">
+          <a href="/regist">Signup</a>
           <el-button type="primary" @click="login">Login</el-button>
         </div>
       </form>
@@ -31,12 +40,31 @@ export default {
       }
     };
   },
+  computed: {
+    apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
+    loginErrors() {
+      return this.$store.state.auth.loginErrorMessages;
+    }
+  },
   methods: {
     async login() {
       await this.$store.dispatch("auth/login", this.loginForm);
 
-      this.$router.push("/home");
+      if (this.apiStatus) {
+        this.$router.push("/home");
+      }
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.submit {
+  margin-top: 20px;
+  > a {
+    margin-right: 30px;
+  }
+}
+</style>
