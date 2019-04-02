@@ -4,7 +4,8 @@ import { OK, UNPROCESSABLE_ENTITY } from '../util';
 const state = {
   user: null,
   apiStatus: null,
-  loginErrorMessages: null
+  loginErrorMessages: null,
+  registErrorMessages: null
 };
 
 const getters = {
@@ -21,13 +22,31 @@ const mutations = {
   },
   setLoginErrorMessages(state, messages) {
     state.loginErrorMessages = messages;
+  },
+  setRegistErrorMessages(state, messages) {
+    state.registErrorMessages = messages;
   }
 };
 
 const actions = {
   async register(context, data) {
-    const response = await axios.post('/api/register', data);
-    context.commit('setUser', response.data);
+    context.commit('setApiStatus', null);
+    const response = await axios
+      .post('/api/register', data)
+      .catch(err => err.response || err);
+
+    if (response.status === OK) {
+      context.commit('setApiStatus', true);
+      context.commit('setUser', response.data);
+      return false;
+    }
+
+    context.commit('setApiStatus', false);
+    if (response.status === UNPROCESSABLE_ENTITY) {
+      context.commit('setRegistErrorMessages', response.data.errors);
+    } else {
+      context.commit('error/setCode', response.status, { root: true });
+    }
   },
   async login(context, data) {
     context.commit('setApiStatus', null);
