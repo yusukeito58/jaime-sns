@@ -22,7 +22,7 @@
           <el-input type="password" v-model="loginForm.password"/>
         </div>
         <div class="text-right submit">
-          <a href="/regist">Signup</a>
+          <router-link to="/regist">Signup</router-link>
           <el-button type="primary" @click="login">Login</el-button>
         </div>
       </form>
