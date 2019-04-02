@@ -1,14 +1,9 @@
 <template>
-  <el-menu mode="horizontal">
+  <el-menu mode="horizontal" router>
     <el-menu-item index="1" style="pointer-events:none;">Laravel-SNS</el-menu-item>
 
     <el-menu-item v-if="isLogin" index="4" style="float: right;" @click="logout">Logout</el-menu-item>
-    <el-menu-item
-      v-else
-      index="4"
-      style="float: right;"
-      :router="{ path: '/login'}"
-    >Login / Register</el-menu-item>
+    <el-menu-item v-else index="4" style="float: right;" :route="{ path: '/login'}">Login / Register</el-menu-item>
     <el-menu-item v-if="isLogin" index="5" style="float: right; pointer-events:none;">
       <span>{{ username }}</span>
     </el-menu-item>
