@@ -1,5 +1,20 @@
 <template>
   <form class="form" @submit.prevent="register">
+    <div v-if="registErrors">
+      <ul v-if="registErrors.name">
+        <li v-for="(msg, index) in registErrors.name" :key="index">{{ msg }}</li>
+      </ul>
+      <ul v-if="registErrors.email">
+        <li v-for="(msg, index) in registErrors.email" :key="index">{{ msg }}</li>
+      </ul>
+      <ul v-if="registErrors.password">
+        <li v-for="(msg, index) in registErrors.password" :key="index">{{ msg }}</li>
+      </ul>
+      <ul v-if="registErrors.password_confirmation">
+        <li v-for="(msg, index) in registErrors.password_confirmation" :key="index">{{ msg }}</li>
+      </ul>
+    </div>
+
     <label for="username">Name</label>
     <input type="text" id="username" class="form__item" v-model="registerForm.name">
     <label for="email">Email</label>
@@ -26,11 +41,21 @@ export default {
       }
     };
   },
+  computed: {
+    apiStatus() {
+      return this.$store.state.auth.apiStatus;
+    },
+    registErrors() {
+      return this.$store.state.auth.registErrorMessages;
+    }
+  },
   methods: {
     async register() {
       await this.$store.dispatch("auth/register", this.registerForm);
 
-      this.$router.push("/home");
+      if (this.apiStatus) {
+        this.$router.push("/home");
+      }
     }
   }
 };
