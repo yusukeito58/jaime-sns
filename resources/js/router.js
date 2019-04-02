@@ -6,6 +6,8 @@ import Home from './pages/Home.vue';
 import Login from './pages/Login.vue';
 import Regist from './pages/Regist.vue';
 
+import UserEdit from './pages/user/Edit.vue';
+
 import System from './pages/errors/System.vue';
 
 Vue.use(VueRouter);
@@ -29,6 +31,13 @@ const routes = [
   {
     path: '/regist',
     component: Regist
+  },
+  {
+    path: '/user/edit',
+    component: UserEdit,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/500',
