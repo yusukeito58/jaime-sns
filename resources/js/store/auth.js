@@ -68,13 +68,30 @@ const actions = {
     }
   },
   async logout(context) {
+    context.commit('setApiStatus', null);
     const response = await axios.post('/api/logout');
-    context.commit('setUser', null);
+
+    if (response.status === OK) {
+      context.commit('setApiStatus', true);
+      context.commit('setUser', null);
+      return false;
+    }
+
+    context.commit('setApiStatus', false);
+    context.commit('error/setCode', response.status, { root: true });
   },
   async currentUser(context) {
+    context.commit('setApiStatus', null);
     const response = await axios.get('/api/user');
     const user = response.data || null;
-    context.commit('setUser', user);
+
+    if (response.status === OK) {
+      context.commit('setApiStatus', true);
+      context.commit('setUser', user);
+    }
+
+    context.commit('setApiStatus', false);
+    context.commit('error/setCode', response.status, { root: true });
   }
 };
 
