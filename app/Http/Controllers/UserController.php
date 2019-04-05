@@ -16,6 +16,14 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $validate_rule = [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ];
+
+        $this->validate($request, $validate_rule);
+
         $user = Auth::user();
 
         $user->name = $request->name;

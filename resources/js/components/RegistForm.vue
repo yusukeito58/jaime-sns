@@ -57,7 +57,14 @@ export default {
   },
   methods: {
     async register() {
-      await this.$store.dispatch("auth/register", this.registerForm);
+      let url;
+      if (this.path == "update") {
+        url = "auth/update";
+      } else {
+        url = "auth/register";
+      }
+
+      await this.$store.dispatch(url, this.registerForm);
 
       if (this.apiStatus) {
         this.$router.push("/home");
