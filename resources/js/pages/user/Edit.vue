@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>mypage edit</p>
-    <RegistForm :path="path"/>
+    <RegistForm path="update"/>
   </div>
 </template>
 
@@ -11,11 +10,6 @@ import RegistForm from "../../components/RegistForm.vue";
 export default {
   components: {
     RegistForm
-  },
-  data() {
-    return {
-      path: "update"
-    };
   }
 };
 </script>

@@ -1,32 +1,47 @@
 <template>
-  <form class="form" @submit.prevent="register">
-    <div v-if="registErrors">
-      <ul v-if="registErrors.name">
-        <li v-for="(msg, index) in registErrors.name" :key="index">{{ msg }}</li>
-      </ul>
-      <ul v-if="registErrors.email">
-        <li v-for="(msg, index) in registErrors.email" :key="index">{{ msg }}</li>
-      </ul>
-      <ul v-if="registErrors.password">
-        <li v-for="(msg, index) in registErrors.password" :key="index">{{ msg }}</li>
-      </ul>
-      <ul v-if="registErrors.password_confirmation">
-        <li v-for="(msg, index) in registErrors.password_confirmation" :key="index">{{ msg }}</li>
-      </ul>
-    </div>
+  <section class="container">
+    <el-card>
+      <div slot="header" class="clearfix">
+        <span>User From</span>
+      </div>
+      <form class="form">
+        <div v-if="registErrors">
+          <ul v-if="registErrors.name">
+            <li v-for="(msg, index) in registErrors.name" :key="index">{{ msg }}</li>
+          </ul>
+          <ul v-if="registErrors.email">
+            <li v-for="(msg, index) in registErrors.email" :key="index">{{ msg }}</li>
+          </ul>
+          <ul v-if="registErrors.password">
+            <li v-for="(msg, index) in registErrors.password" :key="index">{{ msg }}</li>
+          </ul>
+          <ul v-if="registErrors.password_confirmation">
+            <li v-for="(msg, index) in registErrors.password_confirmation" :key="index">{{ msg }}</li>
+          </ul>
+        </div>
 
-    <label for="username">Name</label>
-    <input type="text" id="username" class="form__item" v-model="registerForm.name">
-    <label for="email">Email</label>
-    <input type="text" id="email" v-model="registerForm.email">
-    <label for="password">Password</label>
-    <input type="password" id="password" v-model="registerForm.password">
-    <label for="password-confirmation">Password (confirm)</label>
-    <input type="password" id="password-comfirmation" v-model="registerForm.password_confirmation">
-    <div>
-      <button type="submit">register</button>
-    </div>
-  </form>
+        <div class="form-content">
+          <span>Name</span>
+          <el-input v-model="registerForm.name"/>
+        </div>
+        <div class="form-content">
+          <span>Email</span>
+          <el-input v-model="registerForm.email"/>
+        </div>
+        <div class="form-content">
+          <span>Password</span>
+          <el-input v-model="registerForm.password"/>
+        </div>
+        <div class="form-content">
+          <span>Password (confirm)</span>
+          <el-input v-model="registerForm.password_confirmation"/>
+        </div>
+        <div class="text-right submit">
+          <el-button type="primary" @click="register">Regist</el-button>
+        </div>
+      </form>
+    </el-card>
+  </section>
 </template>
 
 <script>
@@ -73,3 +88,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.submit {
+  margin-top: 20px;
+  > a {
+    margin-right: 30px;
+  }
+}
+</style>
