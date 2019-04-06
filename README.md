@@ -9,6 +9,10 @@
 ## Overview
 It is a web application that imitates Twitter. Created by Laravel + Vue.js.
 
+## Usage technology
+
+![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/technology.svg)
+
 ## Demo
 
 [Demo](http://i-yusuke.com/)
