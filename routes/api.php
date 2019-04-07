@@ -2,6 +2,8 @@
 
 // User Regist
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
+// User Update
+Route::put('/update', 'UserController@update')->name('update');
 
 // User Login
 Route::post('/login', 'Auth\LoginController@login')->name('login');

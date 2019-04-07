@@ -48,6 +48,25 @@ const actions = {
       context.commit('error/setCode', response.status, { root: true });
     }
   },
+  async update(context, data) {
+    context.commit('setApiStatus', null);
+    const response = await axios
+      .put('/api/update', data)
+      .catch(err => err.response || err);
+
+    if (response.status === OK) {
+      context.commit('setApiStatus', true);
+      context.commit('setUser', response.data);
+      return false;
+    }
+
+    context.commit('setApiStatus', false);
+    if (response.status === UNPROCESSABLE_ENTITY) {
+      context.commit('setRegistErrorMessages', response.data.errors);
+    } else {
+      context.commit('error/setCode', response.status, { root: true });
+    }
+  },
   async login(context, data) {
     context.commit('setApiStatus', null);
     const response = await axios
