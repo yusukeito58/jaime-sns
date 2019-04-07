@@ -30,9 +30,16 @@ const mutations = {
 
 const actions = {
   async register(context, data) {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('photo', data.photo);
+    formData.append('password', data.password);
+    formData.append('password_confirmation', data.password_confirmation);
+
     context.commit('setApiStatus', null);
     const response = await axios
-      .post('/api/register', data)
+      .post('/api/register', formData)
       .catch(err => err.response || err);
 
     if (response.status === OK) {
