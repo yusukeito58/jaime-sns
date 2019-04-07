@@ -6,11 +6,14 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
+    const PHOTO_LENGTH = 12;
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -52,6 +55,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'photo' => ['file', 'mimes:jpg,jpeg,png,gif'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -64,9 +68,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $extension = $data['photo']->extension();
+
+        $photo_filename = $this->getRandomId() . '.' . $extension;
+
+        Storage::cloud()->putFileAs('', $data['photo'], $photo_filename, 'public');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'photo_filename' => $photo_filename,
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -74,5 +85,28 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         return $user;
+    }
+
+
+    /**
+     * ランダムなID値を生成する
+     * @return string
+     */
+    private function getRandomId()
+    {
+        $characters = array_merge(
+            range(0, 9), range('a', 'z'),
+            range('A', 'Z'), ['-', '_']
+        );
+
+        $length = count($characters);
+
+        $id = "";
+
+        for ($i = 0; $i < self::PHOTO_LENGTH; $i++) {
+            $id .= $characters[random_int(0, $length - 1)];
+        }
+
+        return $id;
     }
 }
