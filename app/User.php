@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -16,15 +17,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'photo_filename', 'password',
     ];
 
     protected $visible = [
-        'name'
+        'name', 'photo_url'
+    ];
+
+    protected $appends = [
+        'photo_url'
     ];
 
     public function posts()
     {
         return $this->hasMany('App\Post');
+    }
+
+    public function getPhotoUrlAttribute()
+    {
+        return Storage::cloud()->url($this->photo_filename);
     }
 }
