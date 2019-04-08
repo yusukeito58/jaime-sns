@@ -26,11 +26,17 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    meta: {
+      requiresNotAuth: true
+    }
   },
   {
     path: '/regist',
-    component: Regist
+    component: Regist,
+    meta: {
+      requiresNotAuth: true
+    }
   },
   {
     path: '/user/edit',

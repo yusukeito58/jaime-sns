@@ -19,6 +19,11 @@ const createApp = async () => {
       !store.getters['auth/check']
     ) {
       next('login');
+    } else if (
+      to.matched.some(record => record.meta.requiresNotAuth) &&
+      store.getters['auth/check']
+    ) {
+      next('home');
     } else {
       next();
     }
