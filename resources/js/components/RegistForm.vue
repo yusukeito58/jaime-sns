@@ -29,6 +29,13 @@
           <el-input v-model="registerForm.email"/>
         </div>
         <div class="form-content">
+          <span>Photo</span>
+          <input class type="file" @change="onFileChange">
+          <output class v-if="preview">
+            <img :src="preview" alt>
+          </output>
+        </div>
+        <div class="form-content">
           <span>Password</span>
           <el-input v-model="registerForm.password"/>
         </div>
@@ -57,9 +64,11 @@ export default {
       registerForm: {
         name: "",
         email: "",
+        photo: "",
         password: "",
         password_confirmation: ""
-      }
+      },
+      preview: null
     };
   },
   computed: {
@@ -84,6 +93,35 @@ export default {
       if (this.apiStatus) {
         this.$router.push("/home");
       }
+    },
+    onFileChange(evnet) {
+      // Not selected
+      if (evnet.target.files.length === 0) {
+        this.reset();
+        return false;
+      }
+
+      // Not image files
+      if (!event.target.files[0].type.match("image.*")) {
+        this.reset();
+        return false;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        this.preview = e.target.result;
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+
+      // set form
+      this.registerForm.photo = event.target.files[0];
+    },
+    reset() {
+      this.preview = "";
+      this.registerForm.photo = "";
+      this.$el.querySelector('input[type="file"]').value = null;
     }
   }
 };
@@ -95,5 +133,28 @@ export default {
   > a {
     margin-right: 30px;
   }
+}
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
 }
 </style>
