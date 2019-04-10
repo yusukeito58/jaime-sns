@@ -4,10 +4,8 @@
       <Navbar/>
     </header>
     <main>
-      <div class="container">
-        <Message/>
-        <RouterView/>
-      </div>
+      <Message/>
+      <RouterView/>
     </main>
     <Footer/>
   </div>
