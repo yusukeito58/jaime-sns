@@ -26,23 +26,19 @@ export default {
   methods: {
     async onInfinite() {
       this.page++;
-      console.log(this.page);
+
       const response = await axios
         .get(`/api/posts?page=${this.page}`)
         .then(res => {
-          console.log(res);
           if (0 < res.data.data.length) {
-            console.log("add");
             this.posts.push(...res.data.data);
             this.$refs.infiniteLoading.stateChanger.loaded();
           } else {
-            console.log("not");
             this.$refs.infiniteLoading.stateChanger.complete();
           }
         })
         .catch(err => {
           this.$refs.infiniteLoading.$emit("$InfiniteLoading:complete");
-          console.log(err);
         });
     }
   }
