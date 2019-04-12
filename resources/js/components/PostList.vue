@@ -1,35 +1,49 @@
 <template>
   <div>
     <Post v-for="post in posts" :item="post" :key="post.id"/>
+    <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
+      <span slot="no-more">no more contents dorobow.</span>
+    </infinite-loading>
   </div>
 </template>
 
 <script>
+import InfiniteLoading from "vue-infinite-loading";
 import Post from "./Post.vue";
 
 export default {
   components: {
+    InfiniteLoading,
     Post
   },
   data() {
     return {
-      posts: []
+      posts: [],
+      page: 0
     };
   },
-  created() {
-    // initial
-    this.fetchPosts();
-
-    this.update();
-  },
+  created() {},
   methods: {
-    update() {
-      setInterval(this.fetchPosts, 10000);
-    },
-    async fetchPosts() {
-      const response = await axios.get("/api/posts");
-
-      this.posts = response.data.data;
+    async onInfinite() {
+      this.page++;
+      console.log(this.page);
+      const response = await axios
+        .get(`/api/posts?page=${this.page}`)
+        .then(res => {
+          console.log(res);
+          if (0 < res.data.data.length) {
+            console.log("add");
+            this.posts.push(...res.data.data);
+            this.$refs.infiniteLoading.stateChanger.loaded();
+          } else {
+            console.log("not");
+            this.$refs.infiniteLoading.stateChanger.complete();
+          }
+        })
+        .catch(err => {
+          this.$refs.infiniteLoading.$emit("$InfiniteLoading:complete");
+          console.log(err);
+        });
     }
   }
 };
