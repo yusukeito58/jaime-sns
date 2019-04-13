@@ -1,8 +1,8 @@
 <template>
-  <el-card>
+  <div>
     <img :src="photourl" style="width: 100%;margin-bottom: 16px;border-radius:2px;" alt>
     <h2 style="text-align: center;">{{ username }}</h2>
-  </el-card>
+  </div>
 </template>
 
 <script>

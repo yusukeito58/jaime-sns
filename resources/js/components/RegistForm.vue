@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <el-card>
+    <div>
       <div slot="header" class="clearfix">
         <span>User From</span>
       </div>
@@ -22,11 +22,11 @@
 
         <div class="form-content">
           <span>Name</span>
-          <el-input v-model="registerForm.name"/>
+          <input type="input" v-model="registerForm.name">
         </div>
         <div class="form-content">
           <span>Email</span>
-          <el-input v-model="registerForm.email"/>
+          <input type="input" v-model="registerForm.email">
         </div>
         <div class="form-content">
           <span>Photo</span>
@@ -37,17 +37,17 @@
         </div>
         <div class="form-content">
           <span>Password</span>
-          <el-input v-model="registerForm.password"/>
+          <input type="password" v-model="registerForm.password">
         </div>
         <div class="form-content">
           <span>Password (confirm)</span>
-          <el-input v-model="registerForm.password_confirmation"/>
+          <input type="password" v-model="registerForm.password_confirmation">
         </div>
         <div class="text-right submit">
-          <el-button type="primary" @click="register">Regist</el-button>
+          <button type="primary" @click="register">Regist</button>
         </div>
       </form>
-    </el-card>
+    </div>
   </section>
 </template>
 

@@ -6,7 +6,7 @@
         It is a web application that imitates Twitter.
         <br>Created by Laravel + Vue.js.
       </p>
-      <el-button type="primary" round class="login" @click="login">Login</el-button>
+      <div type="primary" round class="login" @click="login">Login</div>
     </div>
   </div>
 </template>
