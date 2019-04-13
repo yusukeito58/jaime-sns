@@ -1,5 +1,5 @@
 <template>
-  <el-alert v-if="message" :title="message" :type="type" center show-icon></el-alert>
+  <div v-if="message" :title="message" :type="type" center show-icon></div>
 </template>
 
 <script>

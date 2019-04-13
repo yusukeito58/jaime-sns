@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <el-card style="flex: 1">
+    <div style="flex: 1">
       <div slot="header" class="clearfix">
         <span>Login Form</span>
       </div>
@@ -15,18 +15,18 @@
         </div>
         <div class="form-content">
           <span>Email</span>
-          <el-input v-model="loginForm.email"/>
+          <input type="text" v-model="loginForm.email">
         </div>
         <div class="form-content">
           <span>Password</span>
-          <el-input type="password" v-model="loginForm.password"/>
+          <input type="password" v-model="loginForm.password">
         </div>
         <div class="text-right submit">
           <router-link to="/regist">Signup</router-link>
-          <el-button type="primary" @click="login">Login</el-button>
+          <div type="primary" @click="login">Login</div>
         </div>
       </form>
-    </el-card>
+    </div>
   </section>
 </template>
 

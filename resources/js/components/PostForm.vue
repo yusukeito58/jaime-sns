@@ -1,10 +1,10 @@
 <template>
-  <el-card v-show="value">
+  <div v-show="value">
     <form>
-      <el-input type="textarea" :rows="3" placeholder="Please input" v-model="content"></el-input>
-      <el-button type="primary" @click="submit" round style="float: right;">Primary</el-button>
+      <input type="textarea" :rows="3" placeholder="Please input" v-model="content">
+      <button type="primary" @click="submit" round style="float: right;">Primary</button>
     </form>
-  </el-card>
+  </div>
 </template>
 
 <script>
