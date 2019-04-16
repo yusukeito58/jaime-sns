@@ -5,7 +5,9 @@
     </router-link>
 
     <span v-if="isLogin" @click="logout">Logout</span>
-    <ls-button v-else :to="'/login'" :value="'Login / Regist'"/>
+    <router-link v-else :to="'/login'">
+      <ls-button :value="'Login / Regist'"/>
+    </router-link>
     <router-link v-if="isLogin" to="/user/edit">Mypage</router-link>
     <span v-if="isLogin">Welcome {{ username }}</span>
   </div>
@@ -37,10 +39,8 @@ export default {
   background: #fff;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
-  height: 4.5rem;
   justify-content: space-between;
   position: relative;
-  width: 100%;
-  padding: 2%;
+  padding: 0.5rem 1rem;
 }
 </style>

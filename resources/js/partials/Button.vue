@@ -1,14 +1,10 @@
 <template>
-  <router-link class="button" :to="to">{{ value }}</router-link>
+  <span class="button">{{ value }}</span>
 </template>
 
 <script>
 export default {
   props: {
-    to: {
-      type: String,
-      required: false
-    },
     value: {
       type: String,
       required: true

@@ -23,6 +23,10 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  background: #fafafa;
+  width: 100%;
+  min-height: calc(100vh - 61px);
+
   background-image: url(/images/background.jpg);
   background-position: center center;
   background-repeat: no-repeat;

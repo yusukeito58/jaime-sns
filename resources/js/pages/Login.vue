@@ -1,7 +1,7 @@
 <template>
-  <section class="container">
-    <div style="flex: 1">
-      <div slot="header" class="clearfix">
+  <section>
+    <div>
+      <div>
         <span>Login Form</span>
       </div>
       <form>
@@ -13,15 +13,15 @@
             <li v-for="(msg, index) in loginErrors.password" :key="index">{{ msg }}</li>
           </ul>
         </div>
-        <div class="form-content">
+        <div>
           <span>Email</span>
           <input type="text" v-model="loginForm.email">
         </div>
-        <div class="form-content">
+        <div>
           <span>Password</span>
           <input type="password" v-model="loginForm.password">
         </div>
-        <div class="text-right submit">
+        <div>
           <router-link to="/regist">Signup</router-link>
           <div type="primary" @click="login">Login</div>
         </div>
