@@ -1,21 +1,14 @@
 <template>
-  <el-menu mode="horizontal" router>
-    <el-menu-item index="1" style="pointer-events:none;">Laravel-SNS</el-menu-item>
+  <div class="nav">
+    <router-link class="nav__brand" to="/home">
+      <img src="/images/logo.png" alt>
+    </router-link>
 
-    <el-menu-item v-if="isLogin" index="4" style="float: right;" @click="logout">Logout</el-menu-item>
-    <el-menu-item v-else index="4" style="float: right;" :route="{ path: '/login'}">Login / Register</el-menu-item>
-    <el-menu-item
-      v-if="isLogin"
-      index="5"
-      style="float: right;"
-      :route="{ path: '/user/edit'}"
-    >Mypage</el-menu-item>
-    <el-menu-item
-      v-if="isLogin"
-      index="6"
-      style="float: right; pointer-events:none;"
-    >Welcome {{ username }}</el-menu-item>
-  </el-menu>
+    <span v-if="isLogin" @click="logout">Logout</span>
+    <ls-button v-else :to="'/login'" :value="'Login / Regist'"/>
+    <router-link v-if="isLogin" to="/user/edit">Mypage</router-link>
+    <span v-if="isLogin">Welcome {{ username }}</span>
+  </div>
 </template>
 
 <script>
@@ -37,3 +30,17 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.nav {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  height: 4.5rem;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  padding: 2%;
+}
+</style>

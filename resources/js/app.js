@@ -6,6 +6,9 @@ import router from './router';
 import store from './store';
 import App from './App.vue';
 
+import lsButton from './partials/Button.vue';
+Vue.component('ls-button', lsButton);
+
 const createApp = async () => {
   await store.dispatch('auth/currentUser');
 
