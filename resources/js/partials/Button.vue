@@ -1,5 +1,5 @@
 <template>
-  <span class="button">{{ value }}</span>
+  <span class="button" :class="classObject">{{ value }}</span>
 </template>
 
 <script>
@@ -8,6 +8,15 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      required: false
+    }
+  },
+  computed: {
+    classObject() {
+      return this.type ? "button--" + this.type : "";
     }
   }
 };
@@ -27,6 +36,15 @@ export default {
     opacity: 0.8;
     color: #fff;
     transition: all 0.4s;
+  }
+}
+
+.button--primary {
+  background-color: #83a7f1;
+  color: #fff;
+  &:hover {
+    background-color: #3575f5;
+    color: #fff;
   }
 }
 </style>
