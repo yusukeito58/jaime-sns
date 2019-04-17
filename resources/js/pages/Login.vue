@@ -1,10 +1,8 @@
 <template>
-  <section>
-    <div>
-      <div>
-        <span>Login Form</span>
-      </div>
-      <form>
+  <div class="container--small">
+    <div class="c-panel">
+      <div class="c-header">Login Form</div>
+      <form class="c-form">
         <div v-if="loginErrors">
           <ul v-if="loginErrors.email">
             <li v-for="(msg, index) in loginErrors.email" :key="index">{{ msg }}</li>
@@ -13,21 +11,19 @@
             <li v-for="(msg, index) in loginErrors.password" :key="index">{{ msg }}</li>
           </ul>
         </div>
-        <div>
-          <span>Email</span>
-          <input type="text" v-model="loginForm.email">
-        </div>
-        <div>
-          <span>Password</span>
-          <input type="password" v-model="loginForm.password">
-        </div>
-        <div>
-          <router-link to="/regist">Signup</router-link>
-          <div type="primary" @click="login">Login</div>
+        <label>Email</label>
+        <input type="text" class="c-form__item" v-model="loginForm.email">
+        <label>Password</label>
+        <input type="password" class="c-form__item" v-model="loginForm.password">
+        <div class="u-right u-boxes">
+          <router-link to="/regist">
+            <ls-button :value="'Signup'"/>
+          </router-link>
+          <ls-button :value="'Login'" @click="login"/>
         </div>
       </form>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -61,10 +57,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.submit {
-  margin-top: 20px;
-  > a {
-    margin-right: 30px;
+.u-boxes {
+  margin: 1rem 0 0.5rem 0;
+  > :last-child {
+    margin-left: 0.5rem;
   }
+}
+.u-right {
+  text-align: right;
 }
 </style>

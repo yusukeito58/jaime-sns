@@ -135,6 +135,55 @@ table {
   border-spacing: 0;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.container--small {
+  margin: 0 auto;
+  max-width: 600px;
+  margin-top: 50px;
+}
+
+.c-form__item {
+  box-sizing: border-box;
+  border: 1px solid #dedede;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5em 0.75em;
+  width: 100%;
+}
+
+.c-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.c-form__output {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.c-form__button {
+  text-align: right;
+}
+
+.c-panel {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 1.5rem;
+}
+
+.c-panel > .c-header {
+  border-bottom: 1px solid #dedede;
+  font-size: 1.5em;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
 a {
   text-decoration: none;
 }
