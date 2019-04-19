@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div>
-      <div>
+    <div class="grid">
+      <div class="grid__item grid__item--3 has-gutter">
         <Profile/>
       </div>
-      <div>
-        <button v-if="!showForm" @click="showForm = !showForm">Submit a post</button>
+      <div class="grid__item grid__item--9 has-gutter">
+        <ls-button v-if="!showForm" :value="'Submit a post'" @click.native="showForm = !showForm"/>
         <PostForm v-model="showForm"/>
         <PostList/>
       </div>

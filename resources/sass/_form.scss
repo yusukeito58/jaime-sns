@@ -9,6 +9,14 @@
     margin-bottom: 1rem;
     padding: 0.5em 0.75em;
     width: 100%;
+
+    &__textarea {
+      height: 8rem;
+
+      &::placeholder {
+        font-size: 1em;
+      }
+    }
   }
 
   label {

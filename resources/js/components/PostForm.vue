@@ -1,8 +1,15 @@
 <template>
-  <div v-show="value">
-    <form>
-      <input type="textarea" :rows="3" placeholder="Please input" v-model="content">
-      <button type="primary" @click="submit" round style="float: right;">Primary</button>
+  <div v-show="value" class="c-panel">
+    <form class="c-form">
+      <textarea
+        class="c-form__item c-form__item__textarea"
+        placeholder="Please input"
+        row="4"
+        v-model="content"
+      ></textarea>
+      <div class="u-right">
+        <ls-button :value="'Post'" @click.native="submit"/>
+      </div>
     </form>
   </div>
 </template>
@@ -39,3 +46,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.u-right {
+  text-align: right;
+}
+</style>
