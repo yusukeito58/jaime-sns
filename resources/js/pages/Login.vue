@@ -19,7 +19,7 @@
           <router-link to="/regist">
             <ls-button :value="'Signup'"/>
           </router-link>
-          <ls-button :value="'Login'" @click="login"/>
+          <ls-button :value="'Login'" @click.native="login"/>
         </div>
       </form>
     </div>
@@ -47,6 +47,7 @@ export default {
   methods: {
     async login() {
       await this.$store.dispatch("auth/login", this.loginForm);
+      console.log("test");
 
       if (this.apiStatus) {
         this.$router.push("/home");

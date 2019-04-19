@@ -32,7 +32,7 @@
         <label>Password (confirm)</label>
         <input type="password" class="c-form__item" v-model="registerForm.password_confirmation">
         <div class="u-right">
-          <ls-button :value="'Regist'" @click="register"/>
+          <ls-button :value="'Regist'" @click.native="register"/>
         </div>
       </form>
     </div>
