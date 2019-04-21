@@ -2,7 +2,7 @@
   <div class="c-card">
     <div class="c-header">
       <span>{{ item.owner.name }}</span>
-      <span>{{ item.created_at }}</span>
+      <span>{{ item.created_at | moment}}</span>
     </div>
     <div>{{ item.content }}</div>
   </div>
