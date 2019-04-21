@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <img :src="photourl" style="width: 100%;margin-bottom: 16px;border-radius:2px;" alt>
-    <h2 style="text-align: center;">{{ username }}</h2>
+  <div class="c-panel">
+    <div class="c-plofile">
+      <img class="c-photo" :src="photourl" alt>
+      <div class="c-name">{{ username }}</div>
+    </div>
   </div>
 </template>
 
@@ -17,3 +19,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.c-photo {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.c-name {
+  text-align: center;
+}
+</style>
