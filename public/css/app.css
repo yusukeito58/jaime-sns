@@ -276,6 +276,18 @@ table {
   margin-bottom: 2rem;
 }
 
+.c-card {
+  border: 1px solid #dedede;
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.c-card > .c-header {
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
 a {
   text-decoration: none;
 }

@@ -1,8 +1,10 @@
 <template>
-  <div style="width: 100%">
-    <p>{{ item.content }}</p>
-    <p>{{ item.created_at }}</p>
-    <p>{{ item.owner.name }}</p>
+  <div class="c-card">
+    <div class="c-header">
+      <span>{{ item.owner.name }}</span>
+      <span>{{ item.created_at }}</span>
+    </div>
+    <div>{{ item.content }}</div>
   </div>
 </template>
 
@@ -16,3 +18,6 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+</style>

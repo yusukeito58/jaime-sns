@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="c-panel">
     <Post v-for="post in posts" :item="post" :key="post.id"/>
     <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
       <span slot="no-more">no more contents dorobow.</span>
