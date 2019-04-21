@@ -1,15 +1,29 @@
 <template>
-  <div class="nav">
+  <div class="c-nav">
     <router-link class="nav__brand" to="/home">
       <img src="/images/logo.png" alt>
     </router-link>
 
-    <span v-if="isLogin" @click="logout">Logout</span>
-    <router-link v-else :to="'/login'">
-      <ls-button :value="'Login / Regist'"/>
-    </router-link>
-    <router-link v-if="isLogin" to="/user/edit">Mypage</router-link>
-    <span v-if="isLogin">Welcome {{ username }}</span>
+    <div class="c-menu">
+      <div v-if="isLogin">
+        <span @click="logout">
+          <ls-button :value="'Logout'"/>
+        </span>
+        <span>
+          <router-link to="/user/edit">
+            <ls-button :value="'Mypage'"/>
+          </router-link>
+        </span>
+        <span>Welcome {{ username }}</span>
+      </div>
+      <div v-else>
+        <span>
+          <router-link :to="'/login'">
+            <ls-button :value="'Login / Regist'"/>
+          </router-link>
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav {
+.c-nav {
   align-items: center;
   background: #fff;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
@@ -42,5 +56,15 @@ export default {
   justify-content: space-between;
   position: relative;
   padding: 0.5rem 1rem;
+
+  > .c-menu {
+    > div > span {
+      margin: 0 0.5rem;
+
+      &:last-child {
+        margin-left: 1rem;
+      }
+    }
+  }
 }
 </style>
