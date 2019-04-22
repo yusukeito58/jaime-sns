@@ -27,6 +27,7 @@ export default {
   border: 1px solid #dedede;
   border-radius: 1.5rem;
   color: #8a8a8a;
+  background-color: #fff;
   padding: 0.6rem 1rem;
   text-decoration: none;
   transition: all 0.4s;
