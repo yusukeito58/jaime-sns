@@ -1,6 +1,6 @@
 <template>
   <div class="c-nav">
-    <router-link class="nav__brand" to="/home">
+    <router-link class="nav__brand" :to="logoLink">
       <img src="/images/logo.png" alt>
     </router-link>
 
@@ -30,6 +30,9 @@
 <script>
 export default {
   computed: {
+    logoLink() {
+      return this.isLogin ? "/home" : "/";
+    },
     isLogin() {
       return this.$store.getters["auth/check"];
     },
