@@ -1,10 +1,17 @@
 import './bootstrap';
 
 import Vue from 'vue';
-
+import moment from 'moment';
 import router from './router';
 import store from './store';
 import App from './App.vue';
+
+import lsButton from './partials/Button.vue';
+Vue.component('ls-button', lsButton);
+
+Vue.filter('moment', function(value) {
+  return moment(value).format('YYYY/MM/DD HH:mm');
+});
 
 const createApp = async () => {
   await store.dispatch('auth/currentUser');

@@ -1,10 +1,8 @@
 <template>
-  <section class="container">
-    <div>
-      <div slot="header" class="clearfix">
-        <span>User From</span>
-      </div>
-      <form class="form">
+  <div class="container--small">
+    <div class="c-panel">
+      <div class="c-header">User Form</div>
+      <form class="c-form">
         <div v-if="registErrors">
           <ul v-if="registErrors.name">
             <li v-for="(msg, index) in registErrors.name" :key="index">{{ msg }}</li>
@@ -20,35 +18,25 @@
           </ul>
         </div>
 
-        <div class="form-content">
-          <span>Name</span>
-          <input type="input" v-model="registerForm.name">
-        </div>
-        <div class="form-content">
-          <span>Email</span>
-          <input type="input" v-model="registerForm.email">
-        </div>
-        <div class="form-content">
-          <span>Photo</span>
-          <input class type="file" @change="onFileChange">
-          <output class v-if="preview">
-            <img :src="preview" alt>
-          </output>
-        </div>
-        <div class="form-content">
-          <span>Password</span>
-          <input type="password" v-model="registerForm.password">
-        </div>
-        <div class="form-content">
-          <span>Password (confirm)</span>
-          <input type="password" v-model="registerForm.password_confirmation">
-        </div>
-        <div class="text-right submit">
-          <button type="primary" @click="register">Regist</button>
+        <label>Name</label>
+        <input type="input" class="c-form__item" v-model="registerForm.name">
+        <label>Email</label>
+        <input type="input" class="c-form__item" v-model="registerForm.email">
+        <label>Photo</label>
+        <input type="file" class="c-image" @change="onFileChange">
+        <output v-if="preview" class="c-preview">
+          <img :src="preview" alt>
+        </output>
+        <label>Password</label>
+        <input type="password" class="c-form__item" v-model="registerForm.password">
+        <label>Password (confirm)</label>
+        <input type="password" class="c-form__item" v-model="registerForm.password_confirmation">
+        <div class="u-right">
+          <ls-button :value="'Regist'" @click.native="register"/>
         </div>
       </form>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -128,33 +116,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.submit {
-  margin-top: 20px;
-  > a {
-    margin-right: 30px;
+.c-image {
+  margin-bottom: 1rem;
+}
+.c-preview {
+  > img {
+    display: block;
+    padding-bottom: 1rem;
+    width: 70%;
+    margin: 0 auto;
   }
 }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
+.u-right {
+  text-align: right;
 }
 </style>

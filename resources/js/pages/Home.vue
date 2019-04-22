@@ -1,23 +1,14 @@
 <template>
-  <div>
-    <div v-if="isLogin">
-      <div :span="6">
+  <div class="container">
+    <div class="grid">
+      <div class="grid__item grid__item--3 has-gutter">
         <Profile/>
       </div>
-      <div :span="18">
-        <button v-if="!showForm" @click="showForm = !showForm">Submit a post</button>
+      <div class="grid__item grid__item--9 has-gutter">
+        <ls-button v-if="!showForm" :value="'Submit a post'" @click.native="showForm = !showForm"/>
         <PostForm v-model="showForm"/>
         <PostList/>
       </div>
-    </div>
-    <div v-else>
-      <h1>Top Page</h1>
-      <router-link :to="{ path: '/login'}">
-        <button type="primary" plain>Login</button>
-      </router-link>
-      <router-link :to="{ path: '/regist' }">
-        <button>Regist</button>
-      </router-link>
     </div>
   </div>
 </template>

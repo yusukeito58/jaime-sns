@@ -1,26 +1,38 @@
 <template>
-  <el-menu mode="horizontal" router>
-    <el-menu-item index="1" style="pointer-events:none;">Laravel-SNS</el-menu-item>
+  <div class="c-nav">
+    <router-link class="nav__brand" :to="logoLink">
+      <img src="/images/logo.png" alt>
+    </router-link>
 
-    <el-menu-item v-if="isLogin" index="4" style="float: right;" @click="logout">Logout</el-menu-item>
-    <el-menu-item v-else index="4" style="float: right;" :route="{ path: '/login'}">Login / Register</el-menu-item>
-    <el-menu-item
-      v-if="isLogin"
-      index="5"
-      style="float: right;"
-      :route="{ path: '/user/edit'}"
-    >Mypage</el-menu-item>
-    <el-menu-item
-      v-if="isLogin"
-      index="6"
-      style="float: right; pointer-events:none;"
-    >Welcome {{ username }}</el-menu-item>
-  </el-menu>
+    <div class="c-menu">
+      <div v-if="isLogin">
+        <span @click="logout">
+          <ls-button :value="'Logout'"/>
+        </span>
+        <span>
+          <router-link to="/user/edit">
+            <ls-button :value="'Mypage'"/>
+          </router-link>
+        </span>
+        <span>Welcome {{ username }}</span>
+      </div>
+      <div v-else>
+        <span>
+          <router-link :to="'/login'">
+            <ls-button :value="'Login / Regist'"/>
+          </router-link>
+        </span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   computed: {
+    logoLink() {
+      return this.isLogin ? "/home" : "/";
+    },
     isLogin() {
       return this.$store.getters["auth/check"];
     },
@@ -37,3 +49,25 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.c-nav {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 0.5rem 1rem;
+
+  > .c-menu {
+    > div > span {
+      margin: 0 0.5rem;
+
+      &:last-child {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+</style>
