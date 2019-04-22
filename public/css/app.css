@@ -1,55 +1,289 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+@import url(https://fonts.googleapis.com/css?family=Nunito);/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-html {
-  font-family: "Hiragino Sans", sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-.wrapper {
-  background: #fafafa;
-  width: 100%;
-  min-height: calc(100vh - 61px);
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
-.el-card {
-  flex: 1;
+body {
+  line-height: 1;
 }
 
-.container:not(.__nuxt-error-page) {
-  width: 96%;
-  max-width: 980px;
-  padding: 30px 0;
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.container {
   margin: 0 auto;
-  min-height: calc(100vh - 61px);
-  justify-content: center;
-  align-items: flex-start;
+  padding: 0 50px;
+  max-width: 1280px;
+  margin-top: 30px;
 }
 
-.text-left {
-  text-align: left;
+.container--small {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 600px;
+  margin-top: 50px;
 }
 
-.text-right {
+.grid {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.grid--fill {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.grid__item {
+  float: left;
+  box-sizing: border-box;
+  width: 16.667%;
+}
+
+.grid__item--1 {
+  width: 8.333%;
+}
+
+.grid__item--2 {
+  width: 16.677%;
+}
+
+.grid__item--3 {
+  width: 25%;
+}
+
+.grid__item--4 {
+  width: 33.333%;
+}
+
+.grid__item--5 {
+  width: 41.666%;
+}
+
+.grid__item--6 {
+  width: 50%;
+}
+
+.grid__item--7 {
+  width: 58.333%;
+}
+
+.grid__item--8 {
+  width: 66.666%;
+}
+
+.grid__item--9 {
+  width: 75%;
+}
+
+.grid__item--10 {
+  width: 83.33%;
+}
+
+.grid__item--11 {
+  width: 91.666%;
+}
+
+.grid__item--12 {
+  width: 100%;
+}
+
+.has-gutter {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.c-form__item {
+  box-sizing: border-box;
+  border: 1px solid #dedede;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5em 0.75em;
+  width: 100%;
+}
+
+.c-form__item__textarea {
+  height: 8rem;
+}
+
+.c-form__item__textarea::-webkit-input-placeholder {
+  font-size: 1em;
+}
+
+.c-form__item__textarea:-ms-input-placeholder {
+  font-size: 1em;
+}
+
+.c-form__item__textarea::-ms-input-placeholder {
+  font-size: 1em;
+}
+
+.c-form__item__textarea::placeholder {
+  font-size: 1em;
+}
+
+.c-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.c-form__output {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.c-form__button {
   text-align: right;
 }
 
-.text-center {
-  text-align: center;
+.c-panel {
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 1.5rem;
+}
+
+.c-panel > .c-header {
+  border-bottom: 1px solid #dedede;
+  font-size: 1.5em;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.c-card {
+  border: 1px solid #dedede;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
 }
 

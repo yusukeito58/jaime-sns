@@ -6,7 +6,10 @@
         It is a web application that imitates Twitter.
         <br>Created by Laravel + Vue.js.
       </p>
-      <el-button type="primary" round class="login" @click="login">Login</el-button>
+      <div>
+        <ls-button class="login" :value="'Login'" @click.native="login"/>
+      </div>
+      <!-- <div type="primary" round  @click="login">Login</div> -->
     </div>
   </div>
 </template>
@@ -23,6 +26,10 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
+  background: #fafafa;
+  width: 100%;
+  min-height: calc(100vh - 61px);
+
   background-image: url(/images/background.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -48,6 +55,7 @@ export default {
     font-size: 8vw; // TODO
   }
   > .description {
+    margin-bottom: 50px;
     font-size: 2.5vw; // TODO
   }
   > .login {

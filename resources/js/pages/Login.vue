@@ -1,10 +1,8 @@
 <template>
-  <section class="container">
-    <el-card style="flex: 1">
-      <div slot="header" class="clearfix">
-        <span>Login Form</span>
-      </div>
-      <form>
+  <div class="container--small">
+    <div class="c-panel">
+      <div class="c-header">Login Form</div>
+      <form class="c-form">
         <div v-if="loginErrors">
           <ul v-if="loginErrors.email">
             <li v-for="(msg, index) in loginErrors.email" :key="index">{{ msg }}</li>
@@ -13,21 +11,19 @@
             <li v-for="(msg, index) in loginErrors.password" :key="index">{{ msg }}</li>
           </ul>
         </div>
-        <div class="form-content">
-          <span>Email</span>
-          <el-input v-model="loginForm.email"/>
-        </div>
-        <div class="form-content">
-          <span>Password</span>
-          <el-input type="password" v-model="loginForm.password"/>
-        </div>
-        <div class="text-right submit">
-          <router-link to="/regist">Signup</router-link>
-          <el-button type="primary" @click="login">Login</el-button>
+        <label>Email</label>
+        <input type="text" class="c-form__item" v-model="loginForm.email">
+        <label>Password</label>
+        <input type="password" class="c-form__item" v-model="loginForm.password">
+        <div class="u-right u-boxes">
+          <router-link to="/regist">
+            <ls-button :value="'Signup'"/>
+          </router-link>
+          <ls-button :value="'Login'" @click.native="login"/>
         </div>
       </form>
-    </el-card>
-  </section>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -51,6 +47,7 @@ export default {
   methods: {
     async login() {
       await this.$store.dispatch("auth/login", this.loginForm);
+      console.log("test");
 
       if (this.apiStatus) {
         this.$router.push("/home");
@@ -61,10 +58,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.submit {
-  margin-top: 20px;
-  > a {
-    margin-right: 30px;
+.u-boxes {
+  margin: 1rem 0 0.5rem 0;
+  > :last-child {
+    margin-left: 0.5rem;
   }
+}
+.u-right {
+  text-align: right;
 }
 </style>
