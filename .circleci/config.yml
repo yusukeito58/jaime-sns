@@ -11,7 +11,7 @@ workflows:
       - aws-code-deploy/deploy:
           application-name: laravel-sns # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
           deployment-group: master # The name of a new deployment group for the specified application.
-          service-role-arn: arn:aws:iam::831132817655:user/laravel-sns-deploy # The service role for a deployment group.
+          # service-role-arn: arn:aws:iam::831132817655:user/laravel-sns-deploy # The service role for a deployment group.
           bundle-bucket: laravel-sns-code # The s3 bucket where an application revision will be stored.
           bundle-key: / # A key under the s3 bucket where an application revision will be stored.
           arguments: '--profile assume_role'
