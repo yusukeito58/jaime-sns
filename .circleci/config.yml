@@ -2,22 +2,18 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2
-jobs:
-  build:
-    working_directory: ~/repo
-  environment:
-    - AWS_S3_BUCKET_NAME: laravel-sns-code
-  docker:
-    - image: innovatorjapan/awscli:latest
-  steps:
-    - checkout
-    - run:
-      name: Deploy to S3 if branch is Master.
-      command: |
-        if [ "${CIRCLE_BRANCH}" == "master" ]; then
-          aws s3 sync ~/repo s3://${AWS_S3_BUCKET_NAME}/ --exact-timestamps --delete
-        fi
+version: 2.1 # We must use 2.1 to make use of orbs.
+orbs: # specify all orbs you want to use.
+  aws-code-deploy: circleci/aws-code-deploy@1.0.0
+workflows:
+  deploy_application:
+    jobs:
+      - aws-code-deploy/deploy:
+          application-name: myApplication # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+          deployment-group: myDeploymentGroup # The name of a new deployment group for the specified application.
+          service-role-arn: myDeploymentGroupRoleARN # The service role for a deployment group.
+          bundle-bucket: myApplicationS3Bucket # The s3 bucket where an application revision will be stored.
+          bundle-key: myS3BucketKey # A key under the s3 bucket where an application revision will be stored.
 
 # jobs:
 #   build:
