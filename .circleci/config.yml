@@ -4,7 +4,7 @@
 #
 version: 2.1 # We must use 2.1 to make use of orbs.
 orbs: # specify all orbs you want to use.
-  aws-code-deploy: circleci/aws-code-deploy@1.0.0
+  aws-code-deploy: circleci/aws-code-deploy@0.0.9
 workflows:
   deploy_application:
     jobs:
