@@ -14,7 +14,7 @@ workflows:
           service-role-arn: myDeploymentGroupRoleARN # The service role for a deployment group.
           bundle-bucket: myApplicationS3Bucket # The s3 bucket where an application revision will be stored.
           bundle-key: myS3BucketKey # A key under the s3 bucket where an application revision will be stored.
-
+          arguments: '--profile assume_role'
 # jobs:
 #   build:
 #     docker:
