@@ -3,67 +3,82 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2
-jobs:
-  build:
+  jobs:
+    build:
+      working_directory: ~/repo
+    environment:
+      - AWS_S3_BUCKET_NAME: laravel-sns-code
     docker:
-      # Specify the version you desire here
-      - image: circleci/php:7.2-stretch-node-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # Using the RAM variation mitigates I/O contention
-      # for database intensive operations.
-      # - image: circleci/mysql:5.7-ram
-      #
-      # - image: redis:3
-
+      - image: innovatorjapan/awscli:latest
     steps:
       - checkout
+      - run:
+        name: Deploy to S3 if branch is Master.
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            aws s3 sync ~/repo s3://${AWS_S3_BUCKET_NAME}/ --exact-timestamps --delete
+          fi
+# jobs:
+#   build:
+#     docker:
+#       # Specify the version you desire here
+#       - image: circleci/php:7.2-stretch-node-browsers
 
-      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+#       # Specify service dependencies here if necessary
+#       # CircleCI maintains a library of pre-built images
+#       # documented at https://circleci.com/docs/2.0/circleci-images/
+#       # Using the RAM variation mitigates I/O contention
+#       # for database intensive operations.
+#       # - image: circleci/mysql:5.7-ram
+#       #
+#       # - image: redis:3
 
-      # Download and cache dependencies
+#     steps:
+#       - checkout
 
-      # composer cache
-      - restore_cache:
-          keys:
-            # "composer.lock" can be used if it is committed to the repo
-            - v1-dependencies-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+#       - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
+#       - run: sudo docker-php-ext-install zip
 
-      - run: composer install -n --prefer-dist
+#       # Download and cache dependencies
 
-      - save_cache:
-          key: composer-v1-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
+#       # composer cache
+#       - restore_cache:
+#           keys:
+#             # "composer.lock" can be used if it is committed to the repo
+#             - v1-dependencies-{{ checksum "composer.json" }}
+#             # fallback to using the latest cache if no exact match is found
+#             - v1-dependencies-
 
-      # node cache
+#       - run: composer install -n --prefer-dist
 
-      - restore_cache:
-          keys:
-            - node-v4-{{ checksum "package.json" }}
-            - node-v4-
-      - run: npm install
-      - save_cache:
-          key: node-v4-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-            - ~/.yarn
+#       - save_cache:
+#           key: composer-v1-{{ checksum "composer.lock" }}
+#           paths:
+#             - vendor
 
-      # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+#       # node cache
 
-      # run tests with phpunit or codecept
-      - run: ./vendor/bin/phpunit
-      # this example uses codecept but you're not limited to it
-      # - run: ./vendor/bin/codecept build
-      # - run: ./vendor/bin/codecept run --xml result.xml
-      - store_test_results:
-          path: tests/_output
-      - store_artifacts:
-          path: tests/_output
+#       - restore_cache:
+#           keys:
+#             - node-v4-{{ checksum "package.json" }}
+#             - node-v4-
+#       - run: npm install
+#       - save_cache:
+#           key: node-v4-{{ checksum "package.json" }}
+#           paths:
+#             - node_modules
+#             - ~/.yarn
+
+#       # prepare the database
+#       - run: touch storage/testing.sqlite
+#       - run: php artisan migrate --env=testing --database=sqlite_testing --force
+
+#       # run tests with phpunit or codecept
+#       - run: ./vendor/bin/phpunit
+#       # this example uses codecept but you're not limited to it
+#       # - run: ./vendor/bin/codecept build
+#       # - run: ./vendor/bin/codecept run --xml result.xml
+#       - store_test_results:
+#           path: tests/_output
+#       - store_artifacts:
+#           path: tests/_output
