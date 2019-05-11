@@ -16,4 +16,5 @@ workflows:
           bundle-key: code # A key under the s3 bucket where an application revision will be stored.
           filters:
             branches:
-              only: master
+              only:
+                - master
