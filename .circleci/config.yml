@@ -14,3 +14,6 @@ workflows:
           service-role-arn: arn:aws:iam::831132817655:user/laravel-sns-deploy # The service role for a deployment group.
           bundle-bucket: laravel-sns-code # The s3 bucket where an application revision will be stored.
           bundle-key: code # A key under the s3 bucket where an application revision will be stored.
+          filters:
+            branches:
+              only: master
