@@ -50,11 +50,11 @@ jobs:
       - run: php artisan migrate --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit
-      - run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpunit --testdox-html tests/_output
       - store_test_results:
-          path: laravel-sns/_output
+          path: tests/_output
       - store_artifacts:
-          path: laravel-sns/_output
+          path: tests/_output
 
 workflows:
   deploy_application:
