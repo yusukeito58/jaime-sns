@@ -55,7 +55,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'photo' => ['file', 'mimes:jpg,jpeg,png,gif'],
+            'photo' => ['nullable', 'file', 'mimes:jpg,jpeg,png,gif'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
@@ -68,11 +68,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $extension = $data['photo']->extension();
+        if (!empty($data['photo'])) {
+            $extension = $data['photo']->extension();
 
-        $photo_filename = $this->getRandomId() . '.' . $extension;
-
-        Storage::cloud()->putFileAs('', $data['photo'], $photo_filename, 'public');
+            $photo_filename = $this->getRandomId() . '.' . $extension;
+    
+            Storage::cloud()->putFileAs('', $data['photo'], $photo_filename, 'public');
+        } else {
+            $photo_filename = null;
+        }
 
         return User::create([
             'name' => $data['name'],

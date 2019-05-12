@@ -12,8 +12,9 @@ jobs:
     steps:
       - checkout
 
-      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+      - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev libpng-dev libjpeg-dev gnupg
+      - run: sudo docker-php-ext-configure gd --with-png-dir=/usr/include --with-jpeg-dir=/usr/include
+      - run: sudo docker-php-ext-install zip gd
       # Download and cache dependencies
 
       # composer cache
@@ -49,7 +50,7 @@ jobs:
       - run: php artisan migrate --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit
-      - run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpunit --testdox-xml tests/_output
       - store_test_results:
           path: tests/_output
       - store_artifacts:

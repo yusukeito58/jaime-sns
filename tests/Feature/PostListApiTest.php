@@ -4,10 +4,11 @@ namespace Tests\Feature;
 
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class PostListApiTest extends TestCase
@@ -26,6 +27,8 @@ class PostListApiTest extends TestCase
      */
     public function returnCorrectStructureJson()
     {
+        Storage::fake('s3');
+
         factory(Post::class, 5)->create();
 
         $response = $this->actingAs($this->user)->json('GET', route('post.index'));
@@ -40,6 +43,7 @@ class PostListApiTest extends TestCase
                 'created_at' => $post->created_at->toDateTimeString(),
                 'owner' => [
                     'name' => $post->owner->name,
+                    'photo_url' => '/storage/dummy_photo.jpg',
                 ],
             ];
         })
