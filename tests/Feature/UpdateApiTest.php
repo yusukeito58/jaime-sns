@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -22,9 +24,12 @@ class UpdateApiTest extends TestCase
      */
     public function updateUser()
     {
+        Storage::fake('s3');
+
         $data = [
             'name' => 'update user',
             'email' => 'update@example.com',
+            'photo' => UploadedFile::fake()->image('update_photo.jpg'),
             'password' => 'update1234',
             'password_confirmation' => 'update1234',
         ];

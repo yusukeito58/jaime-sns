@@ -10,6 +10,9 @@
           <ul v-if="registErrors.email">
             <li v-for="(msg, index) in registErrors.email" :key="index">{{ msg }}</li>
           </ul>
+          <ul v-if="registErrors.photo">
+            <li v-for="(msg, index) in registErrors.photo" :key="index">{{ msg }}</li>
+          </ul>
           <ul v-if="registErrors.password">
             <li v-for="(msg, index) in registErrors.password" :key="index">{{ msg }}</li>
           </ul>
