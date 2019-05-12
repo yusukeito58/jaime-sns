@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\User;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -24,6 +25,8 @@ class LoginApiTest extends TestCase
      */
     public function authenticateAndReturnRegisteredUser()
     {
+        Storage::fake('s3');
+
         $response = $this->json('POST', route('login'), [
             'email' => $this->user->email,
             'password' => 'secret'
