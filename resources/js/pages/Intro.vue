@@ -7,7 +7,7 @@
         <br>Created by Laravel + Vue.js.
       </p>
       <div>
-        <ls-button class="login" :value="'Login'" @click.native="login"/>
+        <ls-button class="login" :value="'LOGIN'" @click.native="login"/>
       </div>
       <!-- <div type="primary" round  @click="login">Login</div> -->
     </div>
