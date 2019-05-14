@@ -43,11 +43,11 @@ workflows:
     jobs:
       - test
       - aws-code-deploy/deploy:
-          application-name: APP_NAME # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
-          deployment-group: DEPLOY_GROUP # The name of a new deployment group for the specified application.
-          service-role-arn: SERVICE_ROLE_ARN # The service role for a deployment group.
-          bundle-bucket: BUNDLE_BUCKET # The s3 bucket where an application revision will be stored.
-          bundle-key: BUNDLE_KEY # A key under the s3 bucket where an application revision will be stored.
+          application-name: $APP_NAME # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+          deployment-group: $DEPLOY_GROUP # The name of a new deployment group for the specified application.
+          service-role-arn: $SERVICE_ROLE_ARN # The service role for a deployment group.
+          bundle-bucket: $BUNDLE_BUCKET # The s3 bucket where an application revision will be stored.
+          bundle-key: $BUNDLE_KEY # A key under the s3 bucket where an application revision will be stored.
           requires:
             - test
           filters:
