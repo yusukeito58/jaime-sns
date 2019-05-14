@@ -55,11 +55,39 @@ jobs:
           path: tests/_output
       - store_artifacts:
           path: tests/_output
+  build:
+    docker:
+      - image: node:10
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+      - run: yarn install
+      - run: yarn build
+
+      - save_cache:
+          key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
 workflows:
   deploy_application:
     jobs:
       - test
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
       - aws-code-deploy/deploy:
           application-name: laravel-sns # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
           deployment-group: master # The name of a new deployment group for the specified application.
@@ -67,8 +95,4 @@ workflows:
           bundle-bucket: laravel-sns-code # The s3 bucket where an application revision will be stored.
           bundle-key: code # A key under the s3 bucket where an application revision will be stored.
           requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
+            - build
