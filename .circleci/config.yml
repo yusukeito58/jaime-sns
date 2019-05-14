@@ -27,29 +27,6 @@ jobs:
 
       - run: composer install -n --prefer-dist
 
-      # - save_cache:
-      #     key: composer-v1-{{ checksum "composer.lock" }}
-      #     paths:
-      #       - vendor
-
-      # # node cache
-
-      # - restore_cache:
-      #     keys:
-      #       - node-v4-{{ checksum "package.json" }}
-      #       - node-v4-
-      # - run: npm install
-      # - run: npm run production
-      # - save_cache:
-      #     key: node-v4-{{ checksum "package.json" }}
-      #     paths:
-      #       - node_modules
-      #       - ~/.yarn
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
-
       # prepare the database
       - run: touch storage/testing.sqlite
       - run: php artisan migrate --env=testing --database=sqlite_testing --force
@@ -60,23 +37,6 @@ jobs:
           path: tests/_output
       - store_artifacts:
           path: tests/_output
-  # build:
-  #   docker:
-  #     - image: node:10
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-  #     - run: yarn install
-  #     - run: yarn build
-  #     - save_cache:
-  #         key: yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-  #         paths:
-  #           - node_modules
-  #     - persist_to_workspace:
-  #         root: .
-  #         paths:
-  #           - .
 
 workflows:
   deploy_application:
