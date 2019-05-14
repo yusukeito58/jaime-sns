@@ -5,6 +5,6 @@ files:
     destination: /usr/share/nginx/html
 hooks:
   AfterInstall:
-    - location: hooks/vue-build.sh
+    - location: hooks/npm-prod.sh
       timeout: 180
       runas: root
