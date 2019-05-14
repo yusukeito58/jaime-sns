@@ -73,15 +73,15 @@ jobs:
             - node_modules
 
       - persist_to_workspace:
-        root: .
-        paths:
-          - .
+          root: .
+          paths:
+            - .
 
 workflows:
   deploy_application:
     jobs:
       - test
-      - build
+      - build:
           requires:
             - test
           filters:
