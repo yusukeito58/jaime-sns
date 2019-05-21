@@ -1,9 +1,12 @@
 <template>
   <div class="c-panel">
-    <Post v-for="post in posts" :item="post" :key="post.id"/>
-    <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
-      <span slot="no-more">no more contents dorobow.</span>
-    </infinite-loading>
+    <div v-if="!posts">There are no posts yet.</div>
+    <div v-else>
+      <Post v-for="post in posts" :item="post" :key="post.id"/>
+      <infinite-loading @infinite="onInfinite" ref="infiniteLoading">
+        <span slot="no-more">no more contents dorobow.</span>
+      </infinite-loading>
+    </div>
   </div>
 </template>
 
