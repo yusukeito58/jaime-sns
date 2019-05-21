@@ -35,6 +35,11 @@ class User extends Authenticatable
 
     public function getPhotoUrlAttribute()
     {
-        return Storage::cloud()->url($this->photo_filename);
+        if ($this->photo_filename) {
+            $photo_url = Storage::cloud()->url($this->photo_filename);
+        } else {
+            $photo_url = Storage::cloud()->url('placeholder.jpg');
+        }
+        return $photo_url;
     }
 }
