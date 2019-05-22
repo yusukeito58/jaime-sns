@@ -15,6 +15,8 @@ It is a web application that imitates Twitter. Created by Laravel + Vue.js.
 
 ## Infrastructure
 
+Created by AWS CloudFormation ([config file](https://github.com/yusukeito58/laravel-sns/blob/master/.aws/cfn.yml))
+
 ![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/infrastructure.svg)
 
 ## Demo
