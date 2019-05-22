@@ -14,17 +14,21 @@ It is a web application that imitates Twitter. Created by Laravel + Vue.js.
 
 ![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/technology.svg)
 
+## Main function
+
 ## Infrastructure
 
 Created by AWS CloudFormation ([config file](https://github.com/yusukeito58/laravel-sns/blob/master/.aws/cfn.yml))
 
 ![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/infrastructure.svg)
 
+## ERD
+
+![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/er.svg)
+
 ## Demo
 
 [Demo Site](http://52.193.94.193)
-
-## Main function
   
 ## Licence
 
