@@ -22,6 +22,10 @@ Created by AWS CloudFormation ([config file](https://github.com/yusukeito58/lara
 
 ![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/infrastructure.svg)
 
+## CI/CD
+
+![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/cicd.svg)
+
 ## ERD
 
 ![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/er.svg)
