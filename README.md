@@ -22,15 +22,9 @@ Created by AWS CloudFormation ([config file](https://github.com/yusukeito58/lara
 
 ## Demo
 
-[Demo](http://i-yusuke.com/)
+[Demo Site](http://52.193.94.193)
 
 ## Main function
-
-## Style guide
-
-Component adopts [Element UI](https://element.eleme.io/#/en-US).
-
-※ Layout adjustment is done with scss
   
 ## Licence
 
