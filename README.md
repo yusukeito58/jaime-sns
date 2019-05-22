@@ -1,5 +1,6 @@
 # Laravel-SNS
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![CircleCI](https://circleci.com/gh/yusukeito58/laravel-sns/tree/master.svg?style=svg)](https://circleci.com/gh/yusukeito58/laravel-sns/tree/master)
 
 * Laravel5.6
 * PHP7
