@@ -8,13 +8,16 @@
 * Vue.js
 
 ## Overview
+
 It is a web application that imitates Twitter. Created by Laravel + Vue.js.
+
+## Screen transitions
+
+![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/screen_transitions.svg)
 
 ## Usage technology
 
 ![color:ff69b4](https://github.com/yusukeito58/laravel-sns/blob/master/doc/diagrams/technology.svg)
-
-## Main function
 
 ## Infrastructure
 
