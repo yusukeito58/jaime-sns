@@ -5,6 +5,6 @@ files:
     destination: /usr/share/nginx/html
 hooks:
   AfterInstall:
-    - location: hooks/npm-prod.sh
+    - location: hooks/bulid.sh
       timeout: 180
       runas: root

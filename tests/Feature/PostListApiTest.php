@@ -40,6 +40,7 @@ class PostListApiTest extends TestCase
                 'id' => $post->id,
                 'user_id' => $post->user_id,
                 'content' => $post->content,
+                'photo_filename' => 'dummy_post_photo.jpg',
                 'created_at' => $post->created_at->toDateTimeString(),
                 'owner' => [
                     'name' => $post->owner->name,
