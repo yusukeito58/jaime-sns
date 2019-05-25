@@ -5,6 +5,6 @@ files:
     destination: /usr/share/nginx/html
 hooks:
   AfterInstall:
-    - location: hooks/bulid.sh
+    - location: hooks/build.sh
       timeout: 180
       runas: root
