@@ -24,8 +24,17 @@ class PostController extends Controller
     public function create(StorePost $request)
     {
         $post = new Post();
-
         $post->content = $request->content;
+
+
+        if (!empty($data['photo'])) {
+            $extension = $data['photo']->extension();
+
+            $photo_filename = $this->RandomId() . '.' . $extension;
+
+            Storage::cloud()->putFileAs('posts', $data['photo'], $photo_filename);
+            $post->photo_filename = $photo_filename; 
+        }
 
         Auth::user()->posts()->save($post);
 
