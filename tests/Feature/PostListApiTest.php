@@ -6,10 +6,10 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Tests\TestCase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 
 class PostListApiTest extends TestCase
 {
@@ -35,7 +35,7 @@ class PostListApiTest extends TestCase
 
         $posts = Post::with(['owner'])->orderBy('created_at', 'desc')->get();
 
-        $expected_data = $posts->map(function($post) {
+        $expected_data = $posts->map(function ($post) {
             return [
                 'id' => $post->id,
                 'user_id' => $post->user_id,

@@ -20,7 +20,7 @@ class Post extends Model
     {
         parent::__construct($attributes);
 
-        if (!array_get($this->attributes, 'id')) {
+        if (! array_get($this->attributes, 'id')) {
             $this->setId();
         }
     }
