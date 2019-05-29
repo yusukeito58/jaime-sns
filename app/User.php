@@ -2,10 +2,10 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -21,11 +21,11 @@ class User extends Authenticatable
     ];
 
     protected $visible = [
-        'name', 'photo_url'
+        'name', 'photo_url',
     ];
 
     protected $appends = [
-        'photo_url'
+        'photo_url',
     ];
 
     public function posts()
@@ -40,6 +40,7 @@ class User extends Authenticatable
         } else {
             $photo_url = Storage::cloud()->url('placeholder.jpg');
         }
+
         return $photo_url;
     }
 }

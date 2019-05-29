@@ -19,6 +19,7 @@ class UpdateApiTest extends TestCase
 
         $this->user = factory(User::class)->create();
     }
+
     /**
      * @test
      */

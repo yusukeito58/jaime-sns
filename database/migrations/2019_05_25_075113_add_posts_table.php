@@ -13,7 +13,7 @@ class AddPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function(Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->string('photo_filename')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function(Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->dropColumn('photo_filename');
         });
     }
