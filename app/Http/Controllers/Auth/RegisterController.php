@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -68,11 +68,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if (!empty($data['photo'])) {
+        if (! empty($data['photo'])) {
             $extension = $data['photo']->extension();
 
-            $photo_filename = $this->getRandomId() . '.' . $extension;
-    
+            $photo_filename = $this->getRandomId().'.'.$extension;
+
             Storage::cloud()->putFileAs('', $data['photo'], $photo_filename, 'public');
         } else {
             $photo_filename = null;
@@ -91,9 +91,8 @@ class RegisterController extends Controller
         return $user;
     }
 
-
     /**
-     * ランダムなID値を生成する
+     * ランダムなID値を生成する.
      * @return string
      */
     private function getRandomId()
@@ -105,7 +104,7 @@ class RegisterController extends Controller
 
         $length = count($characters);
 
-        $id = "";
+        $id = '';
 
         for ($i = 0; $i < self::PHOTO_LENGTH; $i++) {
             $id .= $characters[random_int(0, $length - 1)];

@@ -32,7 +32,7 @@ class UserApiTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJson([
-                'name' => $this->user->name
+                'name' => $this->user->name,
             ]);
     }
 
@@ -44,6 +44,6 @@ class UserApiTest extends TestCase
         $response = $this->json('GET', route('user'));
 
         $response->assertStatus(200);
-        $this->assertEquals("", $response->content());
+        $this->assertEquals('', $response->content());
     }
 }

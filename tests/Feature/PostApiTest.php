@@ -5,11 +5,10 @@ namespace Tests\Feature;
 use App\Post;
 use App\User;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-
-use Illuminate\Support\Facades\Storage;
 
 class PostApiTest extends TestCase
 {
@@ -28,7 +27,7 @@ class PostApiTest extends TestCase
     public function canPost()
     {
         $data = [
-            'content' => 'test message'
+            'content' => 'test message',
         ];
 
         $response = $this->actingAs($this->user)

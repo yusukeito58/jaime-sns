@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePost;
 use App\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StorePost;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -19,7 +19,7 @@ class PostController extends Controller
     }
 
     /**
-     * Post
+     * Post.
      * @param StorePost $request
      * @return \Illuminate\Http\Response
      */
@@ -29,13 +29,13 @@ class PostController extends Controller
         $post->content = $request->content;
 
         logger($request);
-        if (!empty($request->photo)) {
+        if (! empty($request->photo)) {
             $extension = $request->photo->extension();
 
-            $photo_filename = $this->getRandomId() . '.' . $extension;
+            $photo_filename = $this->getRandomId().'.'.$extension;
 
             Storage::cloud()->putFileAs('/posts/', $request->photo, $photo_filename);
-            $post->photo_filename = $photo_filename; 
+            $post->photo_filename = $photo_filename;
         }
 
         Auth::user()->posts()->save($post);
@@ -44,7 +44,7 @@ class PostController extends Controller
     }
 
     /**
-     * Post List
+     * Post List.
      */
     public function index()
     {
@@ -55,7 +55,7 @@ class PostController extends Controller
     }
 
     /**
-     * ランダムなID値を生成する
+     * ランダムなID値を生成する.
      * @return string
      */
     private function getRandomId()
@@ -67,7 +67,7 @@ class PostController extends Controller
 
         $length = count($characters);
 
-        $id = "";
+        $id = '';
 
         for ($i = 0; $i < self::PHOTO_LENGTH; $i++) {
             $id .= $characters[random_int(0, $length - 1)];
