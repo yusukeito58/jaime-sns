@@ -36,7 +36,9 @@ Created by AWS CloudFormation ([config file](https://github.com/yusukeito58/lara
 
 ## Demo
 
-[Demo Site](http://52.193.94.193)
+~~[Demo Site](http://52.193.94.193)~~
+
+Stopping publishing...
   
 ## Licence
 
