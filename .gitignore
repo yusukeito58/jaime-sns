@@ -13,5 +13,8 @@ yarn-error.log
 !.gitkeep
 
 public/js/app.js
+public/js/manifest.js
+public/js/vendor.js
+public/css/app.css
 public/fonts/*
 public/mix-manifest.json
